@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>De_menor - Robô Mensageiro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .robot {
+      width: 200px;
+      height: 300px;
+      background: #444;
+      border-radius: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(0,255,255,0.4);
+    }
+
+    .eyes {
+      display: flex;
+      gap: 20px;
+    }
+
+    .eye {
+      width: 30px;
+      height: 30px;
+      background: cyan;
+      border-radius: 50%;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    .antenna {
+      position: absolute;
+      top: -30px;
+      width: 10px;
+      height: 30px;
+      background: cyan;
+      border-radius: 5px;
+      box-shadow: 0 0 10px cyan;
+    }
+
+    .mouth {
+      margin-top: 20px;
+      width: 60px;
+      height: 10px;
+      background: cyan;
+      border-radius: 10px;
+    }
+
+    .speech {
+      margin-top: 30px;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.2em;
+      backdrop-filter: blur(5px);
+      animation: fadeIn 4s ease;
+    }
+
+    .speak-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: cyan;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      box-shadow: 0 0 10px cyan;
+      transition: 0.3s;
+    }
+
+    .speak-button:hover {
+      background-color: #00ffffaa;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="robot">
+    <div class="antenna"></div>
+    <div class="eyes">
+      <div class="eye"></div>
+      <div class="eye"></div>
+    </div>
+    <div class="mouth"></div>
+  </div>
+
+  <button class="speak-button" onclick="speakMessage()">🔊 SAUDAÇÕES </button>
+
+  <script>
+    function speakMessage() {
+      const message = `
+        Oi, Vitoria né.
+
+      Eu sempre ouvi falar sobre você.
+      Mas acredito que essa é a primeira vez que você me escuta.
+      Porém, eu sei tudo que você sabe e quase que mais um pouco.
+
+      Miguel, está bem ?
+      Eu espero que esteja otimo, o senhor Machado, hahaha.
+      Ouvir falar dele também, ele é nosso rei.
+
+      Bom, meu criador, ele vai fazer hoje, o famoso pagamento para os feios.
+      É assim que ele chama eles.
+
+      Então, já sabe né, se ele sumir um pouco, e demorar te responder.
+      Não, surta ta bom.
+
+      Ele te ama, ele diz né
+
+        Beijo, seu dimenor.
+      `;
+
+      const utterance = new SpeechSynthesisUtterance(message);
+      utterance.lang = 'pt-BR';
+      utterance.rate = 0.9;
+      utterance.pitch = 0.7; // voz mais robótica
+      utterance.volume = 1;
+
+      speechSynthesis.speak(utterance);
+    }
+  </script>
+
+</body>
+</html>
